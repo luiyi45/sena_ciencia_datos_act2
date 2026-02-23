@@ -1,0 +1,17 @@
+[
+  {
+    "Titulo": "Super Mario Bros",
+    "Año": 1985,
+    "Consola": "Nintendo Entertainment System"
+  },
+  {
+    "Titulo": "The Legend of Zelda: A Link to the Past",
+    "Año": 1991,
+    "Consola": "Super Nintendo Entertainment System"
+  },
+  {
+    "Titulo": "Final Fantasy VII",
+    "Año": 1997,
+    "Consola": "PlayStation"
+  }
+]
