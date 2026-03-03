@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import firebase_admin
+from firebase_admin import credentials, firestore
 
 st.title("Bases de Datos en la Nube: Firebase Firestore")
 
@@ -20,5 +22,34 @@ st.markdown("Escribe en la parte de abajo el código que usarías para lograr el
 
 # ESTUDIANTE: Escribe tu código a continuación
 
+
+if not firebase_admin._apps:
+    try:
+        cred = credentials.Certificate("llave_secreta.json")
+        firebase_admin.initialize_app(cred)
+    except Exception as e:
+        st.error(f"Error al cargar la llave: {e}")
+
+db = firestore.client()
+
+st.subheader("Tu resultado:")
+
+try:
+    vehiculos_ref = db.collection("vehiculos")
+    docs = vehiculos_ref.get()
+
+    lista_vehiculos = [doc.to_dict() for doc in docs]
+
+    if lista_vehiculos:
+        df_firebase = pd.DataFrame(lista_vehiculos)
+        
+        st.success("Datos traídos exitosamente de Firestore")
+        st.dataframe(df_firebase)
+    else:
+        st.warning("No se encontraron documentos en la colección 'vehiculos'.")
+
+except Exception as e:
+    st.info("Simulación: Si no esta el archivo JSON")
+    
 
 

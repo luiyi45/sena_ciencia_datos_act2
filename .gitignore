@@ -1,0 +1,4 @@
+.streamlit/
+llave_secreta.json
+venv/
+
